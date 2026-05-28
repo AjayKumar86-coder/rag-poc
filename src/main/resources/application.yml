@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rag-poc
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+app:
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    base-url: ${OPENAI_BASE_URL:https://api.openai.com/v1}
+    chat-model: ${OPENAI_CHAT_MODEL:gpt-4o-mini}
+    embedding-model: ${OPENAI_EMBEDDING_MODEL:text-embedding-3-small}
+  chroma:
+    url: ${CHROMA_URL:http://localhost:8000}
+    collection: ${CHROMA_COLLECTION:rag_poc}
+  upload-dir: ${UPLOAD_DIR:uploads}
+  rag:
+    chunk-size: 900
+    chunk-overlap: 120
+    top-k: 4
+    memory-limit: 8
+
+logging:
+  level:
+    root: INFO
+    com.example.ragpoc: INFO

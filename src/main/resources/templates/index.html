@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG PoC</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main>
+  <nav><a href="/">Chat</a><a href="/upload">Upload</a></nav>
+  <section class="panel">
+    <h1>Chat</h1>
+    <form method="post" action="/chat">
+      <textarea name="message" placeholder="Ask about uploaded documents..." required autofocus></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div th:if="${answer}" class="answer">
+      <h2>Answer</h2>
+      <p th:text="${answer}"></p>
+      <h2>Retrieved Context</h2>
+      <div th:each="c : ${contexts}" class="context">
+        <strong th:text="${c.source()}"></strong>
+        <p th:text="${c.text()}"></p>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
